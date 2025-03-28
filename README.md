@@ -28,14 +28,13 @@ cd Symphony
 ```bash
 composer install
 ```
-- Création de la base de donnée : 
+- Création de la base de donnée et cliquer sur entrer lors de la question de cmd : 
 ```bash
-php bin/console d:m:m 
+php bin/console d:m:m
 ```
-php bin/console  importmap:install
 
 - Vous pouvez maintenant démarrer le serveur : 
 ```bash
 symfony serve
 ```
-- Le serveur en marche lancez l'url http://localhost:3015/ sur votre navigateur
+- Le serveur en marche lancez l'url http://localhost:8000/ sur votre navigateur
