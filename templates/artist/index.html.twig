@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <ul>
+        {% for artist in artists %}
+            <li> <a href="/artist/{{ artist.id }}">{{ artist.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    {% if app.user.roles[0] == "ROLE_ADMIN" %}
+        <a href="{{ path('app_artist_create') }}">Creer un artiste</a>
+    {% endif %}
+
+    <a href="/">Retour au home</a>
+{% endblock %}

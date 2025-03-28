@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    {{ form_errors(artistForm) }}
+
+    {{ form_start(artistForm) }}
+    {{ form_row(artistForm.name) }}
+    {{ form_row(artistForm.description)}}
+    {{ form_row(artistForm.imageFile)}}
+
+    <button type="submit" class="btn">Edit Artist</button>
+    {{ form_end(artistForm) }}
+{% endblock %}

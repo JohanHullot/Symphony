@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    {% if not app.user %}
+        <a href="/login">Se connecter</a>
+        <a href="/register">S'inscrire</a>
+    {% endif %}
+
+    {% if app.user %}
+        <h1>Hello {{ app.user.email }}</h1>
+
+        <a href="/event">Voir tout les evenements</a>
+        <br>
+        <a href="/artist">Voir tout les artistes</a>
+        <br>
+        <a href="/logout">Se déconnecter</a>
+
+
+        <h3>Mes evenements</h3>
+        {% for event in app.user.events %}
+            <li> <a href="/event/{{ event.id }}">{{ event.name }}</a></li>
+        {% endfor %}
+
+
+    {% endif %}
+{% endblock %}

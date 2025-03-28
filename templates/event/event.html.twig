@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <h1>{{ event.name }}</h1>
+
+    <p>Date de l'evenement : {{ event.date.format('Y m d') }}</p>
+
+    <div>
+
+        <h3>Artiste : </h3>
+        <a href="/artist/{{ event.artist.id }}">{{ event.artist.name }}</a>
+
+        <img src="{{ asset('images/products/' ~ event.artist.image) }}"/>
+    </div>
+
+
+    {% if app.user == event.creator %}
+        <form action="{{ path('app_event_edit', {'id': event.id}) }}">
+            <input type="submit" value ="Modifier l'evenement"/>
+        </form>
+
+        <form action="{{ path('app_event_delete', {'id': event.id}) }}" method="post">
+            <input type="submit" value ="Supprimer l'evenement"/>
+        </form>
+    {% endif %}
+
+
+    {% if app.user in event.users %}
+        <form action="{{ path('app_event_unsubscribe', {'id': event.id}) }}" method="post">
+            <input type="submit" value ="Se desinscrire de l'evenement"/>
+        </form>
+    {% else %}
+        <form action="{{ path('app_event_subscribe', {'id': event.id}) }}" method="post">
+            <input type="submit" value ="S'incrire à l'evenement"/>
+        </form>
+    {% endif %}
+
+    <div>
+
+        <h3>Inscrits : </h3>
+
+        <ul>
+            {% for user in event.users %}
+                <li>{{ user.email }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+
+
+
+    <a href="/">Retour au home</a>
+{% endblock %}

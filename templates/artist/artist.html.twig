@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <h1> {{artist.name}}</h1>
+
+    <p>{{ artist.description }}</p>
+
+    <img src="{{ asset('images/products/' ~ artist.image) }}"/>
+
+    {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+        <form action="{{ path('app_artist_edit', {'id': artist.id}) }}">
+            <input type="submit" value ="Modifier l'artiste"/>
+        </form>
+
+        <form action="{{ path('app_artist_delete', {'id': artist.id}) }}" method="post">
+            <input type="submit" value ="Supprimer l'artiste"/>
+        </form>
+    {% endif %}
+
+
+    <h3>Evenement auquel {{ artist.name }} participe :</h3>
+    <ul>
+        {% for event in artist.events %}
+            <li><a href="/event/{{ event.id }}">{{ event.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+
+
+    <a href="/">Retour au home</a>
+{% endblock %}
