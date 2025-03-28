@@ -17,6 +17,10 @@
         <br>
         <a href="/logout">Se déconnecter</a>
 
+        {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+            <br>
+            <a href="/admin">ADMIN - Voir tout les utilisateurs</a>
+        {% endif %}
 
         <h3>Mes evenements</h3>
         {% for event in app.user.events %}
